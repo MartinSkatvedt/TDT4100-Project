@@ -17,4 +17,13 @@ public class Cell {
 	public boolean getStatus() {
 		return this.active;
 	}
+	
+	public void updateCell(boolean newState) {
+		this.active = newState;
+	}
+	
+	
+	public String toString() {
+		return "x:" + this.position[0] + " y:" + this.position[1] + " status:" + this.active;
+	}
 }
