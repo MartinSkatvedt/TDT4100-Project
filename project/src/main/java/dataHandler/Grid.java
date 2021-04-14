@@ -1,18 +1,24 @@
 package dataHandler;
 
+import java.util.Random;
+
 public class Grid {
 	public Cell[][] grid;
+	private int gridSize;
 	
-	
-	 public static void main(String[] args) {
-		 Grid myGrid = new Grid(10, 10);
-	 }
-	
-	public Grid(int width, int height) {
-		Cell[][] newGrid = new Cell[width][height];
-		
+	public Grid(int gridSize, boolean random) {
+		Cell[][] newGrid = new Cell[gridSize][gridSize];
+		this.gridSize = gridSize;
 		this.grid = newGrid;
 		this.fillGrid();
+		if (random) this.randomizeGrid();
+		/*
+		this.grid[1][1].updateCell(true);
+		this.grid[2][2].updateCell(true);
+		this.grid[2][3].updateCell(true);
+		this.grid[3][2].updateCell(true);
+		this.grid[3][1].updateCell(true);
+		*/
 	}
 	
 	
@@ -28,35 +34,53 @@ public class Grid {
 		return this.grid;
 	}
 	
-	private void updateGrid() {
+	public void updateGrid() {
+		Grid nextGrid = new Grid(this.gridSize, false);
+		
 		for (int i = 0; i < this.grid.length; i++) {
 			for (int j = 0; j < this.grid[0].length; j++) {
-				this.grid[i][j].updateCell(this.checkCell(this.grid[i][j])); 
+				nextGrid.getGrid()[i][j].updateCell(this.checkCell(this.grid[i][j]));
+			}
+		}
+		this.grid = nextGrid.getGrid();
+	}
+	
+	private void randomizeGrid() {
+		Random randomGen = new Random();
+	
+		for (int i = 0; i < this.grid.length; i++) {
+			for (int j = 0; j < this.grid[0].length; j++) {
+				this.grid[i][j].updateCell(randomGen.nextBoolean()); 
 			}
 		}
 	}
 	
-	@SuppressWarnings("finally")
+	
 	private boolean checkCell(Cell cell) {
-		
-		int currentX = cell.getPosition()[0];
-		int currentY = cell.getPosition()[1];
-		int aliveCounter = 0;
-		try {
-			for (int i = -1; i < 2; i++) {
-				for (int j = -1; j < 2; j++) {
-					if (grid[currentX + i][currentY + j].getStatus()) aliveCounter++;
-				}
-			}
-		} finally {
+			int aliveCounter = this.countAliveNeighbours(cell);
+
 			if (cell.getStatus() && aliveCounter < 2) return false;
 			else if (cell.getStatus() && (aliveCounter == 2 || aliveCounter == 3)) return true;
 			else if (cell.getStatus() && aliveCounter > 3) return false;
 			else if (!cell.getStatus() && aliveCounter == 3) return true;
 			else return false;
-		}
 	}
 	
+	private int countAliveNeighbours(Cell cell) {
+		int currentX = cell.getPosition()[0];
+		int currentY = cell.getPosition()[1];
+		int aliveCounter = 0;
+	
+		for (int i = -1; i <= 1; i++) {
+			   for (int j = -1; j <= 1; j++) {
+				   if (i == 0 && j == 0) continue;
+				   if ((currentX + i) < 0 || (currentX + i) >= this.gridSize || (currentY + j) < 0 || (currentY + j) >= this.gridSize) continue;
+				   if (grid[currentX + i][currentY + j].getStatus()) aliveCounter++;				
+			   }
+		}
+		
+		return aliveCounter;
+	}
 	
 	public void printGrid() {
 		for (int i = 0; i < this.grid.length; i++) {
