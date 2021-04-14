@@ -13,5 +13,11 @@
       <Button fx:id="fastButton" layoutX="440.0" layoutY="34.0" mnemonicParsing="false" onAction="#changeSpeed" prefWidth="75.0" text="Fast" />
       <Button fx:id="slowButton" alignment="CENTER" layoutX="290.0" layoutY="34.0" mnemonicParsing="false" onAction="#changeSpeed" prefWidth="75.0" text="Slow" />
       <Button fx:id="normalButton" layoutX="365.0" layoutY="34.0" mnemonicParsing="false" onAction="#changeSpeed" prefWidth="75.0" text="Normal" />
+      <Button fx:id="smallGridButton" layoutX="290.0" layoutY="84.0" mnemonicParsing="false" onAction="#changeGridSize" prefWidth="75.0" text="10x10" />
+      <Button fx:id="mediumGridButton" layoutX="363.0" layoutY="84.0" mnemonicParsing="false" onAction="#changeGridSize" prefWidth="75.0" text="25x25" />
+      <Button fx:id="bigGridButton" layoutX="440.0" layoutY="84.0" mnemonicParsing="false" onAction="#changeGridSize" prefWidth="75.0" text="50x50" />
+      <Button layoutX="451.0" layoutY="672.0" mnemonicParsing="false" onAction="#clearCanvas" text="Clear" />
+      <Button layoutX="53.0" layoutY="307.0" mnemonicParsing="false" onAction="#loadGrid" text="Load file" />
+      <Button layoutX="53.0" layoutY="356.0" mnemonicParsing="false" onAction="#saveGrid" text="Save file" />
    </children>
 </AnchorPane>
