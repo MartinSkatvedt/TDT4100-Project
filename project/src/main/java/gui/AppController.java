@@ -1,6 +1,7 @@
 package gui;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
 public class AppController {
@@ -60,6 +62,13 @@ public class AppController {
 	}
 	
 	public void loadGrid() {
+		FileChooser fileChooser = new FileChooser();
+		
+		fileChooser.getExtensionFilters().addAll(
+			     new FileChooser.ExtensionFilter("CSV files", "*.csv")
+			);
+		
+		File selectedFile = fileChooser.showOpenDialog(this.canvas.getScene().getWindow());
 		
 	}
 	
