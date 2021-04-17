@@ -29,6 +29,11 @@ public class GridHandler {
 		return this.grid;
 	}
 	
+	public void randomizeGrid() {
+		this.grid.randomizeGrid();
+		this.drawGrid();
+	}
+	
 	public void loadNewGrid(Cell[][] newGrid) {
 		this.grid.importGrid(newGrid);
 		this.setNewgridSize(newGrid.length);

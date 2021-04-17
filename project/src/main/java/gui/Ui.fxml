@@ -23,5 +23,6 @@
 		<Button layoutX="507.0" layoutY="685.0" mnemonicParsing="false" onAction="#clearCanvas" text="Clear" />
 		<Button layoutX="50.0" layoutY="685.0" mnemonicParsing="false" onAction="#loadGrid" text="Load file" />
 		<Button layoutX="51.0" layoutY="725.0" mnemonicParsing="false" onAction="#saveGrid" text="Save file" />
+      <Button layoutX="400.0" layoutY="685.0" mnemonicParsing="false" onAction="#randomizeGrid" text="Randomize" />
 	</children>
 </AnchorPane>

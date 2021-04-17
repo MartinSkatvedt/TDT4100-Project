@@ -1,24 +1,18 @@
 package dataHandler;
 
 import java.io.File;
+import java.io.IOException;
 
 public class Template {
-	private int gridSize;
-	private Grid grid;
-	private File file;
+	private Cell[][] cellGrid;
 	
-	
-	public Template() {
-		
+	public Template(String string) throws IOException {
+		CSVLoader fileLoader = new CSVLoader( null);
+		this.cellGrid = fileLoader.loadGridFromFile(string);
+
 	}
 	
-	//saveToFile
-	
-	//loadFromFile
-	
-	
-	
-	public int getGridSize() {
-		return this.gridSize;
+	public Cell[][] getGrid() {
+		return this.cellGrid;
 	}
 }

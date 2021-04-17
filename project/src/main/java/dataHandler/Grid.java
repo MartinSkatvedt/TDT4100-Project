@@ -43,7 +43,7 @@ public class Grid {
 		this.grid = nextGrid.getGrid();
 	}
 	
-	private void randomizeGrid() {
+	public void randomizeGrid() {
 		Random randomGen = new Random();
 	
 		for (int i = 0; i < this.grid.length; i++) {

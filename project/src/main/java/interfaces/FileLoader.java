@@ -6,6 +6,6 @@ import dataHandler.Cell;
 import dataHandler.Grid;
 
 public interface FileLoader {
-	public Cell[][] loadGridFromFile() throws IOException;
+	public Cell[][] loadGridFromFileChooser() throws IOException;
 	public void saveGridToFile(Grid grid) throws IOException;
 }

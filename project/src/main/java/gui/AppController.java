@@ -1,14 +1,14 @@
 package gui;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.List;
 import dataHandler.CSVLoader;
 import dataHandler.GridHandler;
+import dataHandler.Template;
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -22,8 +22,7 @@ public class AppController {
 	private GridHandler gridHandler;
 	private Timeline timeline;
 	private double animationSpeed = 0.1;
-    ObservableList<String> templateList = FXCollections.observableArrayList("Glider", "Glidergun");
-
+	private List<Template> templateList = new ArrayList<Template>();
 		
 	@FXML private Canvas canvas;
 	@FXML private Button playButton;
@@ -42,7 +41,7 @@ public class AppController {
 	}
 	
 	@FXML
-	private void initialize() {
+	private void initialize() throws IOException {
 		this.gridHandler.drawGrid();		
 
 		this.canvas.setOnMouseDragged((MouseEvent event) -> {
@@ -53,19 +52,51 @@ public class AppController {
 			this.handleMouseEvent(event);
 	    });
 		
+		
+		
+		this.templateSetter.setOnAction((event) -> this.changeTemplate());
 		this.templateSetter.setValue("Custom");
-		this.templateSetter.setItems(templateList);
-
+		
+		this.templateSetter.getItems().add("Custom");
+		
+		this.templateSetter.getItems().add("Glider gun");
+		this.templateList.add(new Template("./templates/glidergun.csv"));
+		
+		this.templateSetter.getItems().add("Glider");
+		this.templateList.add(new Template("./templates/glider.csv"));
+		
+		this.templateSetter.getItems().add("10");
+		this.templateList.add(new Template("./templates/10.csv"));
+		
+		this.templateSetter.getItems().add("Spaceship");
+		this.templateList.add(new Template("./templates/spaceship.csv"));
 	}
 	
 	public Canvas getCanvas() {
 		return this.canvas;
 	}
 	
+	public void randomizeGrid() {
+		if (this.timeline.getStatus() == Status.RUNNING) this.startSimulation();
+		this.gridHandler.randomizeGrid();
+	}
+	
+	public void changeTemplate() {
+		 	int selectedIndex = this.templateSetter.getSelectionModel().getSelectedIndex();
+			if (this.timeline.getStatus() == Status.RUNNING) this.startSimulation();
+			
+			if (selectedIndex > 0) {
+				this.gridHandler.loadNewGrid(this.templateList.get(selectedIndex - 1).getGrid());
+			}
+			else {
+				this.gridHandler.resetGrid();
+			}
+	}
+	
 	public void loadGrid() throws IOException {
 	    this.fileLoader = new CSVLoader( this.canvas.getScene().getWindow());	
 		if (this.timeline.getStatus() == Status.RUNNING) this.startSimulation();
-		this.gridHandler.loadNewGrid(fileLoader.loadGridFromFile());
+		this.gridHandler.loadNewGrid(fileLoader.loadGridFromFileChooser());
 	}
 	
 	
