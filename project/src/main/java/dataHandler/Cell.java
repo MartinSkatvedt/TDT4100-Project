@@ -5,6 +5,7 @@ public class Cell {
 	private boolean active;
 	
 	public Cell(int x, int y, boolean alive) {
+		if (x < 0 || y < 0) throw new IllegalArgumentException("Cell position cant be negative");
 		int[] newPosition = {x,y};
 		this.position = newPosition;
 		this.active = alive;

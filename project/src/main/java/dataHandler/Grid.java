@@ -7,6 +7,8 @@ public class Grid {
 	private int gridSize;
 	
 	public Grid(int gridSize, boolean random) {
+		if (gridSize < 0) throw new IllegalArgumentException("Gridsize cant be less than 1");
+
 		Cell[][] newGrid = new Cell[gridSize][gridSize];
 		this.gridSize = gridSize;
 		this.grid = newGrid;
@@ -54,7 +56,7 @@ public class Grid {
 	}
 	
 	
-	private boolean checkCell(Cell cell) {
+	boolean checkCell(Cell cell) {
 			int aliveCounter = this.countAliveNeighbours(cell);
 
 			if (cell.getStatus() && aliveCounter < 2) return false;
