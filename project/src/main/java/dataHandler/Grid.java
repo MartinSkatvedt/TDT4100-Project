@@ -12,13 +12,6 @@ public class Grid {
 		this.grid = newGrid;
 		this.fillGrid();
 		if (random) this.randomizeGrid();
-		/*
-		this.grid[1][1].updateCell(true);
-		this.grid[2][2].updateCell(true);
-		this.grid[2][3].updateCell(true);
-		this.grid[3][2].updateCell(true);
-		this.grid[3][1].updateCell(true);
-		*/
 	}
 	
 	
@@ -32,6 +25,11 @@ public class Grid {
 	
 	public Cell[][] getGrid() {
 		return this.grid;
+	}
+	
+	public void importGrid(Cell[][] newGrid) {
+		this.grid = newGrid;
+		this.gridSize = this.grid.length;
 	}
 	
 	public void updateGrid() {
