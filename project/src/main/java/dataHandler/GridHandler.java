@@ -1,12 +1,8 @@
 package dataHandler;
 import gui.AppController;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.animation.Animation.Status;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 
 public class GridHandler {
 	private int gridSize = 50;
@@ -72,6 +68,8 @@ public class GridHandler {
 	public void drawOnGrid(double pressX, double pressY) {
 		int x = (int)(pressX/this.resolution);
 		int y = (int)(pressY/this.resolution);
+		
+		if (x < 0 || y < 0 || x >= this.gridSize || y >= this.gridSize) return;
 		
 		this.grid.getGrid()[x][y].updateCell(true);
 		this.drawGrid();

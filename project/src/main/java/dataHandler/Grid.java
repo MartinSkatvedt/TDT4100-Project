@@ -81,12 +81,4 @@ public class Grid {
 		
 		return aliveCounter;
 	}
-	
-	public void printGrid() {
-		for (int i = 0; i < this.grid.length; i++) {
-			for (int j = 0; j < this.grid[0].length; j++) {
-				System.out.println(grid[i][j].toString());
-			}
-		}
-	}
 }

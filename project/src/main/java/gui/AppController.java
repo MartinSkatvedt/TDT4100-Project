@@ -77,13 +77,13 @@ public class AppController {
 	}
 	
 	public void randomizeGrid() {
-		if (this.timeline.getStatus() == Status.RUNNING) this.startSimulation();
+		if (this.timeline.getStatus() == Status.RUNNING) this.changeSimulationState();
 		this.gridHandler.randomizeGrid();
 	}
 	
 	public void changeTemplate() {
 		 	int selectedIndex = this.templateSetter.getSelectionModel().getSelectedIndex();
-			if (this.timeline.getStatus() == Status.RUNNING) this.startSimulation();
+			if (this.timeline.getStatus() == Status.RUNNING) this.changeSimulationState();
 			
 			if (selectedIndex > 0) {
 				this.gridHandler.loadNewGrid(this.templateList.get(selectedIndex - 1).getGrid());
@@ -95,7 +95,7 @@ public class AppController {
 	
 	public void loadGrid() throws IOException {
 	    this.fileLoader = new CSVLoader( this.canvas.getScene().getWindow());	
-		if (this.timeline.getStatus() == Status.RUNNING) this.startSimulation();
+		if (this.timeline.getStatus() == Status.RUNNING) this.changeSimulationState();
 		this.gridHandler.loadNewGrid(fileLoader.loadGridFromFileChooser());
 	}
 	
@@ -106,11 +106,11 @@ public class AppController {
 	}
 	
 	public void clearCanvas() {
-		if (this.timeline.getStatus() == Status.RUNNING) this.startSimulation();
+		if (this.timeline.getStatus() == Status.RUNNING) this.changeSimulationState();
 		this.gridHandler.resetGrid();
 	}
 	
-	public void startSimulation() {
+	public void changeSimulationState() {
 		if (this.timeline.getStatus() == Status.RUNNING) {
 			this.timeline.stop();
 			playButton.setText("Start");
@@ -159,11 +159,9 @@ public class AppController {
 			break;
 		}
 		
-		if (this.timeline.getStatus() == Status.RUNNING) this.startSimulation();
+		if (this.timeline.getStatus() == Status.RUNNING) this.changeSimulationState();
 	    this.timeline = new Timeline(new KeyFrame(Duration.seconds(this.animationSpeed), e -> this.nextFrame()));
 	    this.timeline.setCycleCount(Timeline.INDEFINITE);
-		
-	    this.startSimulation();
 	}
 	
 	private void nextFrame() {

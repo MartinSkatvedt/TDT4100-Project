@@ -7,7 +7,6 @@ public class Template {
 	public Template(String string) throws IOException {
 		CSVLoader fileLoader = new CSVLoader( null);
 		this.cellGrid = fileLoader.loadGridFromFile(string);
-
 	}
 	
 	public Cell[][] getGrid() {

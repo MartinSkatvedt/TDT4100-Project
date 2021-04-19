@@ -6,6 +6,7 @@ public class Cell {
 	
 	public Cell(int x, int y, boolean alive) {
 		if (x < 0 || y < 0) throw new IllegalArgumentException("Cell position cant be negative");
+		
 		int[] newPosition = {x,y};
 		this.position = newPosition;
 		this.active = alive;
@@ -21,10 +22,5 @@ public class Cell {
 	
 	public void updateCell(boolean newState) {
 		this.active = newState;
-	}
-	
-	
-	public String toString() {
-		return "x:" + this.position[0] + " y:" + this.position[1] + " status:" + this.active;
 	}
 }
