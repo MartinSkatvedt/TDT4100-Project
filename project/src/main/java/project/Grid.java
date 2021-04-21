@@ -1,4 +1,4 @@
-package dataHandler;
+package project;
 
 import java.util.Random;
 

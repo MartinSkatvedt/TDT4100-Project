@@ -1,4 +1,4 @@
-package dataHandler;
+package project;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import interfaces.FileLoader;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
@@ -63,6 +62,7 @@ public class CSVLoader implements FileLoader {
 	        }
 	    } catch (FileNotFoundException e) {
 	    	System.out.println(e);
+	    	return new Grid(25, false).getGrid();
 	    }
 	    
 	    Cell[][] grid = this.stringArrayToGrid(content);
@@ -93,9 +93,10 @@ public class CSVLoader implements FileLoader {
 	
 	
 	public void saveGridToFile(Grid grid) throws IOException {
+		if (this.window == null) throw new IllegalStateException("Window must be defined to use filechooser");
+
 		FileChooser fileChooser = new FileChooser();
 
-		
 		fileChooser.setInitialDirectory(new File(this.templatePath));
 		fileChooser.getExtensionFilters().addAll(
 			     new FileChooser.ExtensionFilter("CSV", "*.csv")

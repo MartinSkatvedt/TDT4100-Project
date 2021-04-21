@@ -1,4 +1,4 @@
-package dataHandler;
+package project;
 
 public class Cell {
 	private int[] position;

@@ -1,4 +1,4 @@
-package dataHandler;
+package project;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 public class CellTest {
 	@Test
     @DisplayName("Testing Cell update method")

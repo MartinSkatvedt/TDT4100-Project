@@ -1,11 +1,9 @@
-package gui;
+package project;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import dataHandler.CSVLoader;
-import dataHandler.GridHandler;
-import dataHandler.Template;
+
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

@@ -1,5 +1,4 @@
-package dataHandler;
-import gui.AppController;
+package project;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -38,6 +37,7 @@ public class GridHandler {
 	}
 	
 	public void drawGrid() {
+		if (this.appController == null) return; // This is for the test
 		Canvas canvas = this.appController.getCanvas();
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, this.canvasSize, this.canvasSize);
