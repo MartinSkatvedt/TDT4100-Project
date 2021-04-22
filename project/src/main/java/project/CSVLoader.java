@@ -71,7 +71,9 @@ public class CSVLoader implements FileLoader {
 	
 	private Cell[][] stringArrayToGrid(List<String[]> stringArray) {
 		int gridSize = stringArray.size();
-				
+		int length = stringArray.get(0).length;
+		
+		if (gridSize != length) return new Grid(25, false).getGrid();
 		Cell[][] newGrid = new Cell[gridSize][gridSize];
 		
 		for (int i = 0; i < gridSize; i++) {
@@ -107,7 +109,6 @@ public class CSVLoader implements FileLoader {
 		}
 		
 		catch(NullPointerException e) {
-			System.out.println(e);
 			return;
 		}
 		

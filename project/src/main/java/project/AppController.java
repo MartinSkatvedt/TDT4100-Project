@@ -176,6 +176,4 @@ public class AppController {
 			this.gridHandler.drawOnGrid(pressX, pressY);
 		}
 	}
-	
-
 }

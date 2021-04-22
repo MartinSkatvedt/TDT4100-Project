@@ -1,5 +1,6 @@
 package project;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
@@ -23,5 +24,15 @@ public class CellTest {
 		assertThrows(IllegalArgumentException.class, () -> {
 			Cell cell = new Cell(-1, 15, false);
 		});
+	}
+	
+	
+	@Test
+	@DisplayName("getter position test test") 
+	void getTest() {
+		Cell cell = new Cell(10,10,false);
+		
+		assertEquals(10, cell.getPosition()[0]);
+		assertEquals(10, cell.getPosition()[1]);
 	}
 }
