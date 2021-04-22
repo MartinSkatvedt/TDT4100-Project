@@ -105,6 +105,7 @@ public class AppController {
 	
 	public void clearCanvas() {
 		if (this.timeline.getStatus() == Status.RUNNING) this.changeSimulationState();
+		this.templateSetter.setValue("Custom");
 		this.gridHandler.resetGrid();
 	}
 	
@@ -136,6 +137,7 @@ public class AppController {
 			break;
 		}
 		this.gridHandler.setNewgridSize(newGridSize);
+		this.templateSetter.setValue("Custom");
 		this.clearCanvas();
 	}
 	
@@ -166,7 +168,6 @@ public class AppController {
 		 this.gridHandler.updateCanvas();
 	}
 	
-
 	public void handleMouseEvent(MouseEvent event) {
 		double pressX = event.getX();
 		double pressY = event.getY();

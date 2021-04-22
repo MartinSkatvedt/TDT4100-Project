@@ -34,11 +34,12 @@ public class CSVLoader implements FileLoader {
 			);
 		File selectedFile = fileChooser.showOpenDialog(this.window);
 		
-		try {
+		
+		
+		try { //As someone can close the fileChooser without choosing a file
 			selectedFile.getPath();
 		}
 		catch(NullPointerException e) {
-			System.out.println(e);
 			return new Grid(25, false).getGrid();
 		}
 		
@@ -46,7 +47,6 @@ public class CSVLoader implements FileLoader {
 	}
 	
 	public Cell[][] loadGridFromFile(String filename) throws IOException {	
-		if (filename == "") throw new IllegalArgumentException("Filename is empty");
 		return this.load(filename);
 	}
 	
@@ -61,7 +61,6 @@ public class CSVLoader implements FileLoader {
 	        	content.add(stringLine);
 	        }
 	    } catch (FileNotFoundException e) {
-	    	System.out.println(e);
 	    	return new Grid(25, false).getGrid();
 	    }
 	    
@@ -82,7 +81,6 @@ public class CSVLoader implements FileLoader {
 					newGrid[i][j] = new Cell(i, j, Boolean.parseBoolean(stringArray.get(i)[j]));
 				}
 				catch(ArrayIndexOutOfBoundsException e) {
-			    	System.out.println(e);
 			    	return new Grid(25, false).getGrid();
 				}
 			}

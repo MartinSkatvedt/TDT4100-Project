@@ -78,7 +78,6 @@ public class Grid {
 				   if (grid[currentX + i][currentY + j].getStatus()) aliveCounter++;				
 			   }
 		}
-		
 		return aliveCounter;
 	}
 }
